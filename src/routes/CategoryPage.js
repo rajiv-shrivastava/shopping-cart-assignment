@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from 'react';
-import { Card } from 'react-bootstrap';
 import ProductCard from "../components/CategoryCard"
 import axios from 'axios';
 
@@ -21,7 +20,7 @@ export default function CategoryPage() {
     const renderCategories = () =>{
         let categoryCards = []
         if(productCategories && productCategories.length){
-            productCategories.map((category,i) => categoryCards.push(<ProductCard categoryData={category} index={i}/>))
+            productCategories.map((category,i) => categoryCards.push(<ProductCard categoryData={category} index={i} key={i}/>))
         }
         return categoryCards
     }

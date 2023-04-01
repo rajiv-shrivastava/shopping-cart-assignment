@@ -3,8 +3,6 @@ import { Card ,Row,Col,Image,Button} from 'react-bootstrap';
 import ImgrSrc from "../../../static/images/category/baby.png"
 
 export default function CategoryCard(props){
-    console.log(props)
-
     const renderCols = () => {
         let colData =<>
         <Col sm={4}> <img src={ImgrSrc} height="100px" width="150px"/></Col>

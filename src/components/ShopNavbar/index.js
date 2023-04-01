@@ -3,6 +3,7 @@ import {Container,Nav,Navbar,Row,Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 import Logo from "../../../static/images/logo.png"
 import CartImg from "../../../static/images/cart.svg"
+import "./style.scss"
 
 function ShopNavbar() {
   return (
@@ -12,8 +13,8 @@ function ShopNavbar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-             <Nav.Link><Link to="/">Home </Link></Nav.Link>
-             <Nav.Link> <Link to="/products">Products</Link></Nav.Link>
+             <Link to="/" className="navLink">Home </Link>
+              <Link to="/products" className="navLink">Products</Link>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">           
