@@ -8,10 +8,10 @@ export default function CategoryCard(props){
         let colData = []
 
         if(props.index % 2 === 0){
-            colData.push(<React.Fragment key={props.index}><Col sm={6}> 
-                <img src={ImgrSrc} height="100px" width="150px"/>
+            colData.push(<React.Fragment key={props.index}><Col sm={3}> 
+                <img src={ImgrSrc} height="150px" width="150px"/>
               </Col>,
-              < Col sm={4} offset={6}> 
+              < Col sm={8}> 
                 <Card.Title>{props.categoryData.name}</Card.Title>
                 <Card.Text>
                     {props.categoryData.description}
@@ -23,14 +23,14 @@ export default function CategoryCard(props){
         else{
             colData.push(
               <React.Fragment key={props.index}>
-              <Col sm={6}> 
+              <Col sm={8}> 
               <Card.Title>{props.categoryData.name}</Card.Title>
                 <Card.Text>
                     {props.categoryData.description}
                 </Card.Text>
                 <Button style={{borderRadius: "0px",padding: "10px",backgroundColor: "#bb2b56",border: "none"}}> Explore {props.categoryData.key}</Button>
-              </Col>,<Col sm={6 }> 
-                <Image src={ImgrSrc} height="100px" width="150px"/>
+              </Col>,<Col sm={3}> 
+                <Image src={ImgrSrc} height="150px" width="150px"/>
               </Col>
               </React.Fragment>)
 
@@ -39,7 +39,7 @@ export default function CategoryCard(props){
     }
 
     return (<>
-     <Card style={{ width: '100%' ,margin: '10px',height:'200px',border: "0px",boxShadow: "0px 2px 1px 0px grey"}}>
+     <Card style={{ width: '100%' ,margin: '10px',height:'250px',border: "0px",boxShadow: "0px 2px 1px 0px grey"}}>
       <Card.Body >
         <Row>       
             {renderCols()}   

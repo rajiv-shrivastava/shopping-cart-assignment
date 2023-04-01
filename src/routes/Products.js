@@ -4,7 +4,8 @@ import ProductCard from "../components/ProductCard";
 import axios from "axios";
 
 export default function Products() {
-  const [productCategories, setproductCategories] = useState([]);
+  const [productList, setproductList] = useState([]);
+  const [categoryList, setcategoryList] = useState([]);
   useEffect(() => {
     axios({
       method: "GET",
@@ -12,24 +13,36 @@ export default function Products() {
       crossdomain: true,
     })
       .then((res) => {
-        setproductCategories(res.data.products);
+        setproductList(res.data.products);
       })
       .catch((err) => {
-        console.log("error in fetching categories");
+        console.log("error in fetching products");
+      });
+  }, []);
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: `http://localhost:5000/categories`,
+      crossdomain: true,
+    })
+      .then((res) => {
+        setcategoryList(res.data.categories);
+      })
+      .catch((err) => {
+        console.log("error in fetching products");
       });
   }, []);
 
   const renderDropdownItems = () => {
     const dropItems = [];
-    let cats = ["one","two", "threee"];
-
+    let cats = categoryList;
     cats.map((item, i) => {
       dropItems.push(
-        <Dropdown.Item href="#/action-1">{item}</Dropdown.Item>);
+        <Dropdown.Item href="#/action-1" key={item.id} data-title={item.id}>{item.name}</Dropdown.Item>);
     });
-
     return <>
-    <DropdownButton id="dropdown-basic-button" title={cats[0]} className="text-center">
+    <DropdownButton id="dropdown-basic-button" title={categoryList[0].name} className="text-center">
       {dropItems}
       </DropdownButton>
       </>
@@ -37,8 +50,8 @@ export default function Products() {
 
   const renderProducts = () => {
     let categoryCards = [];
-    if (productCategories && productCategories.length) {
-      productCategories.map((category, i) =>
+    if (productList && productList.length) {
+      productList.map((category, i) =>
         categoryCards.push(<ProductCard categoryData={category} index={i} key={i}/>)
       );
     }
@@ -48,7 +61,7 @@ export default function Products() {
   return (
     <div className="container">
       <div>
-        {renderDropdownItems()}
+        {categoryList && categoryList.length && renderDropdownItems()}
       </div>
       {renderProducts()}
     </div>

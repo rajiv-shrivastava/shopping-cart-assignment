@@ -41,7 +41,17 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif|svg)$/i, 
         loader: "file-loader"
-      }
+      },{
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [

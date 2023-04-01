@@ -5,7 +5,7 @@ import ImgrSrc from "../../../static/images/category/baby.png"
 export default function CategoryCard(props){
     const renderCols = () => {
         let colData =<>
-        <Col sm={4}> <img src={ImgrSrc} height="100px" width="150px"/></Col>
+        <Col sm={4}> <img src={ImgrSrc} height="150px" width="150px"/></Col>
             < Col sm={8}> 
                 <Card.Title>{props.categoryData.name}</Card.Title>
                 <Card.Text style={{fontSize: "12px",fontWeight: "500"}}>
