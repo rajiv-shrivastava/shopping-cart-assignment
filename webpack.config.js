@@ -28,7 +28,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.scss$/,
         use: [
           // Creates `style` nodes from JS strings
           "style-loader",
@@ -41,16 +41,6 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif|svg)$/i, 
         loader: "file-loader"
-      },{
-        test: /\.(png|jpg|gif)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-            },
-          },
-        ],
       },
     ],
   },

@@ -1,10 +1,11 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import ShopNavbar from "./components/ShopNavbar/"
-import "./style.css";
+import "./style.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./routes/Home/";
+import Login from "./routes/Login";
 import Products  from "./routes/Products/";
 import ErrorPage from "./error-page"
 
@@ -19,6 +20,7 @@ root.render(
            <ShopNavbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/404" element={<ErrorPage />} />
         <Route path="/products" element={<Products />} />
         <Route path="*" element={<ErrorPage />} />

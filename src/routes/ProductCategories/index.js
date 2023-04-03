@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CategoryCard from "../../components/CategoryCard";
-import axios from "axios";
 import {fetchProductCategories} from "../../actions/apiActions"
-
 import "./ProductCategories.scss"
 
 export default function ProductLandingPage() {

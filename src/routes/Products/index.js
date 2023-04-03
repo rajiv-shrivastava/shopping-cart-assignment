@@ -2,11 +2,23 @@ import React, { useState, useEffect } from "react";
 import { DropdownButton,Dropdown} from "react-bootstrap";
 import ProductCard from "../../components/ProductCard";
 import axios from "axios";
+import {fetchProductCategories} from "../../actions/apiActions"
 import "./productsStyle.scss"
 
 export default function Products() {
   const [productList, setproductList] = useState([]);
   const [categoryList, setcategoryList] = useState([]);
+
+  const fetchCategories = async() => {
+    const response = await fetchProductCategories();
+    setcategoryList(response)
+  }
+
+  useEffect(() => {
+    fetchCategories()
+  }, []);
+
+
   useEffect(() => {
     axios({
       method: "GET",
@@ -21,19 +33,6 @@ export default function Products() {
       });
   }, []);
 
-  useEffect(() => {
-    axios({
-      method: "GET",
-      url: `http://localhost:5000/categories`,
-      crossdomain: true,
-    })
-      .then((res) => {
-        setcategoryList(res.data.categories);
-      })
-      .catch((err) => {
-        console.log("error in fetching products");
-      });
-  }, []);
 
   const renderDropdownItems = () => {
     const dropItems = [];

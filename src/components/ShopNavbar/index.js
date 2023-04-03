@@ -19,8 +19,8 @@ function ShopNavbar() {
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">           
              <Row>
-              <Col sm={6}><Nav.Link href="#home">Sign In</Nav.Link></Col>
-              <Col sm={6}><Nav.Link href="#link">Register</Nav.Link></Col>
+              <Col sm={6}><Link to="/login" className="navLink">Sign In </Link></Col>
+              <Col sm={6}><Link to="/register" className="navLink">register </Link></Col>
               <Col sm={12} style={{background: "#E8E8E8",padding: "10px",width: "50%"}}><img src={CartImg} height="30px" width="30px"/> {0} Items</Col>
             </Row>
         </Navbar.Collapse>

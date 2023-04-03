@@ -1,0 +1,15 @@
+.loginBox{
+    .loginText{
+        display: flex;
+        align-items: center;
+    }
+    
+    .form-control{
+        border-bottom: 2px solid cyan;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-radius: 0px;
+    
+    }
+}

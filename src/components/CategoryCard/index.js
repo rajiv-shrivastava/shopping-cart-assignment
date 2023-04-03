@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card ,Row,Col,Image,Button} from 'react-bootstrap';
 import ImgrSrc from "../../../static/images/category/baby.png"
+import "./categoryCardStyle.scss"
 
 export default function CategoryCard(props){
 
