@@ -1,11 +1,10 @@
 import React from 'react';
-import ProductTiles from "./ProductTiles"
+import ProductCategories from "../ProductCategories"
 
 export default function Root() {
     return (
       <>
-      
-      <ProductTiles />
+      <ProductCategories />
       </>
     );
   }

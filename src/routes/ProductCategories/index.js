@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
-import CategoryCard from "../components/CategoryCard";
+import CategoryCard from "../../components/CategoryCard";
 import axios from "axios";
+import {fetchProductCategories} from "../../actions/apiActions"
 
-export default function ProductTiles() {
+import "./ProductCategories.scss"
+
+export default function ProductLandingPage() {
   const [productCategories, setproductCategories] = useState([]);
+
+  const fetchCategories = async() => {
+    const response = await fetchProductCategories();
+    setproductCategories(response)
+  }
+
   useEffect(() => {
-    axios({
-      method: "GET",
-      url: `http://localhost:5000/categories`,
-      crossdomain: true,
-    })
-      .then((res) => {
-        setproductCategories(res.data.categories);
-      })
-      .catch((err) => {
-        console.log("error in fetching categories");
-      });
+    fetchCategories()
   }, []);
 
   const renderCategories = () => {

@@ -4,7 +4,7 @@
   "description": "This is a shopping cart coding exercise",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server",
+    "start": "webpack-dev-server",
     "build": "webpack"
   },
   "proxy": "http://localhost:5000",

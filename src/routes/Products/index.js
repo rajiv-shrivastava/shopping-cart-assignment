@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { DropdownButton,Dropdown ,ButtonGroup} from "react-bootstrap";
-import ProductCard from "../components/ProductCard";
+import { DropdownButton,Dropdown} from "react-bootstrap";
+import ProductCard from "../../components/ProductCard";
 import axios from "axios";
+import "./productsStyle.scss"
 
 export default function Products() {
   const [productList, setproductList] = useState([]);
