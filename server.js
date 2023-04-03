@@ -20,36 +20,36 @@ app.get("/", (req, res) => {
 
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
-  console.log(req.body,users);
-
-  console.log(users.find(req.body))
-
-  if (username === "admin" && password === "admin") {
-    return res.json({
-      token: jsonwebtoken.sign({ user: "admin" }, JWT_SECRET),
-    });
+  let isValid = false
+  isValid = users.map(usr => (usr.email === username && usr.password === password) ? true : false)
+  if(isValid){
+    return res.status(200).json({token: jsonwebtoken.sign({ user: username }, JWT_SECRET)}) 
   }
-  return res
-    .status(401)
-    .json({ message: "The username and password your provided are invalid" });
+  else{
+    return res.status(401).json({ message: "The username and password your provided are invalid" });
+  }
 });
 
+// app.get("/products", (req, res) => {
+    // if (!req.headers.authorization) {
+    //   return res.status(401).json({ error: "Not Authorized" });
+    // }
+    // // Bearer <token>>
+    // const authHeader = req.headers.authorization;
+    // const token = authHeader.split(" ")[1];
+    // try {
+      // // Verify the token is valid
+//       const { user } = jwt.verify(token, process.env.JWT_SECRET);
+//       return res.status(200).json({
+//         products: products,
+//       });
+//     } catch (error) {
+//       return res.status(401).json({ error: "Not Authorized" });
+//     }
+//   });
+
 app.get("/products", (req, res) => {
-  if (!req.headers.authorization) {
-    return res.status(401).json({ error: "Not Authorized" });
-  }
-  // Bearer <token>>
-  const authHeader = req.headers.authorization;
-  const token = authHeader.split(" ")[1];
-  try {
-    // Verify the token is valid
-    const { user } = jwt.verify(token, process.env.JWT_SECRET);
-    return res.status(200).json({
-      products: products,
-    });
-  } catch (error) {
-    return res.status(401).json({ error: "Not Authorized" });
-  }
+    return res.status(200).json({products: products});
 });
 
 app.get("/banners", (req, res) => {

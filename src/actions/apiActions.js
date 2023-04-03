@@ -26,4 +26,13 @@ const loginAction = (loginBody) => {
     });
 };
 
-export { fetchProductCategories ,loginAction};
+const isLoggedIn = () => {
+  let logInStatus = false;
+  if(sessionStorage.getItem('AUTH_TOKEN')){
+    logInStatus = true
+  }
+  return logInStatus;
+
+}
+
+export { fetchProductCategories ,loginAction,isLoggedIn};

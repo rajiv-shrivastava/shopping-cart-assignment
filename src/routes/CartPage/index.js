@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Form, Row, Col } from "react-bootstrap";
-import "./loginStyle.scss";
+import { Row, Col } from "react-bootstrap";
 import {loginAction} from "../../actions/apiActions"
 
 
-function Login() {
+function CartPage() {
   const [emailError, setEmailError] = useState([]);
   const [passwordError, setPasswordError] = useState([]);
   const [state, setState] = useState({
@@ -41,8 +40,7 @@ function Login() {
         {
           console.log("logged in",res)
           sessionStorage.setItem('USERNAME',res.data.user)
-          sessionStorage.setItem('AUTH_TOKEN',res.data.token)        
-       }).catch(err =>{
+          sessionStorage.setItem('AUTH_TOKEN',res.data.token)
         console.log(`Unable to login ${err}`)
        })
     }
@@ -60,41 +58,11 @@ function Login() {
     <div className="container loginBox mt-4">
       <Row>
         <Col sm={{ span: 4, offset: 2 }}>
-          <h1> Sign In </h1>
-        </Col>
-        <Col sm={{ span: 4 }}>
-          <Form>
-            <Form.Group className="mb-3" controlId="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                onChange={handleChange}
-              />
-              {renderError(emailError)}
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                onChange={handleChange}
-              />
-              {renderError(passwordError)}
-            </Form.Group>
-            <button
-              variant="primary"
-              type="submit"
-              className="submitBtn"
-              onClick={(e) => handleSubmitClick(e)}
-            >
-              Login
-            </button>
-          </Form>
+          <h1> Cart Page</h1>
         </Col>
       </Row>
     </div>
   );
 }
 
-export default Login;
+export default CartPage;

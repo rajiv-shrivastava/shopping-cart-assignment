@@ -16,5 +16,5 @@ yarn start
 
 For Sign in do use below demo credentials (for demo i have saved the below creds)
 
-Email - admin@cart.com  
-password - adminPassword
+Email - user@cart.com
+password - userPassword

@@ -1,6 +1,6 @@
 [
   {
-    "name": "admin@cart.com",
-    "password": "adminPassword"
+    "name": "user@cart.com",
+    "password": "userPassword"
   }
 ]
