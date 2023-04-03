@@ -41,7 +41,7 @@ function Login() {
     };
 
   return (
-    <div className="container loginBox">
+    <div className="container loginBox mt-4">
     <Row>
         <Col sm={{span:4,offset:2}} className="loginText">
             <h1> Login </h1>
