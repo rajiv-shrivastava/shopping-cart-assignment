@@ -41,10 +41,10 @@ function Register() {
     };
 
   return (
-    <div className="container loginBox mt-4">
+    <div className="container registerBox mt-4">
     <Row>
-        <Col sm={{span:4,offset:2}} className="loginText">
-            <h1> Register </h1>
+        <Col sm={{span:4,offset:2}}>
+            <h1> Signup </h1>
         </Col>
       <Col sm={{span: 4}}>
         <Form>
@@ -77,6 +77,7 @@ function Register() {
               padding: "10px",
               backgroundColor: "#bb2b56",
               border: "none",
+              width: "100%"
             }}
             onClick={handleSubmitClick}
           >

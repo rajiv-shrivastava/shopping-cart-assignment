@@ -1,9 +1,4 @@
 .loginBox{
-    .loginText{
-        display: flex;
-        align-items: center;
-    }
-    
     .form-control{
         border-bottom: 2px solid cyan;
         border-top: none;
@@ -12,4 +7,13 @@
         border-radius: 0px;
     
     }
+    .submitBtn{
+        border-radius: 0px;
+        padding: 10px;
+        background-color: #bb2b56;
+        border: none;
+        width: 100%;
+        color: #fff;
+    }
 }
+
