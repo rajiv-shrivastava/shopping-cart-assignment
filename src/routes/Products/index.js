@@ -4,17 +4,25 @@ import ProductCard from "../../components/ProductCard";
 import axios from "axios";
 import {fetchProductCategories} from "../../actions/apiActions"
 import "./productsStyle.scss"
+import { useLocation } from "react-router-dom";
+
 
 export default function Products() {
   const [productList, setproductList] = useState([]);
   const [initalproductList, setinitalproductList] = useState([]);
   const [categoryList, setcategoryList] = useState([]);
-  
+  const location = useLocation();
+  const [defaultCategory, setDefaultCategory] = useState();
 
   const fetchCategories = async() => {
     const response = await fetchProductCategories();
     setcategoryList(response)
   }
+
+  useEffect(() => {
+    location && location.state && location.state.category  ? setDefaultCategory(location.state.category) : setDefaultCategory('All Products')
+  },[])
+
 
   useEffect(() => {
     fetchCategories()
@@ -55,7 +63,7 @@ export default function Products() {
       dropItems.push(<option key={item.id} value={item.category}>{item.name} </option>);
     });
     return <>
-      <Form.Select aria-label="Default select example" id="dropdown-basic-button" onChange={handleCategoryChange}>
+      <Form.Select aria-label="Default select example" id="dropdown-basic-button" onChange={handleCategoryChange} value={defaultCategory}>
           <option>All Products</option>
           {dropItems}
         </Form.Select>
@@ -63,17 +71,17 @@ export default function Products() {
   };
 
   const renderProducts = () => {
-    let categoryCards = null;
+    let productCards = null;
     if (productList && productList.length) {
-      categoryCards = []
+      productCards = []
       productList.map((category, i) =>
-        categoryCards.push(<ProductCard categoryData={category} index={i} key={i}/>)
+        productCards.push(<ProductCard categoryData={category} index={i} key={i}/>)
       );
     }
     else {
-      categoryCards = <div className="noProducts"> No Products available for category</div>
+      productCards = <div className="noProducts"> No Products available for category</div>
     }
-    return categoryCards;
+    return productCards;
   };
 
   return (

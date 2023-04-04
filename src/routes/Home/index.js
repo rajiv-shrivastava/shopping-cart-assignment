@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductCategories from "../ProductCategories"
 
-export default function Root() {
+export default function Home() {
     return (
       <>
       <ProductCategories />

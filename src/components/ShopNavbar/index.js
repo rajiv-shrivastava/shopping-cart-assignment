@@ -5,9 +5,12 @@ import Logo from "../../../static/images/logo.png";
 import CartImg from "../../../static/images/cart.svg";
 import "./shopNavbarstyle.scss";
 import {isLoggedIn} from "../../actions/apiActions"
+import { ShopContext } from "../../index";
 
 function ShopNavbar() {
   const loggedIn = isLoggedIn();
+  const {items,setitems} = useContext(ShopContext)
+  console.log(items)
   return (
     <div id="shoppingNavbar">
     <Navbar bg="light" expand="lg">
@@ -42,7 +45,7 @@ function ShopNavbar() {
             </>:
             <Link to="/cart" className="navLink">
             <Col sm={12}>
-              <div><img src={CartImg} height="30px" width="30px" /> {0} Items</div>
+              <div><img src={CartImg} height="30px" width="30px" /> {items.length} Items</div>
             </Col>
             </Link>
             }

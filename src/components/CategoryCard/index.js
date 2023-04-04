@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Row, Col, Image, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import ImgrSrc from "../../../static/images/category/baby.png";
 import "./categoryCardStyle.scss";
 
@@ -17,6 +18,7 @@ export default function CategoryCard(props) {
           <Col sm={8}>
             <Card.Title>{props.categoryData.name}</Card.Title>
             <Card.Text>{props.categoryData.description}</Card.Text>
+            <Link to="/products" state={{category: props.categoryData.name}}>
             <Button
               style={{
                 borderRadius: "0px",
@@ -28,6 +30,7 @@ export default function CategoryCard(props) {
               {" "}
               Explore {props.categoryData.key}
             </Button>
+            </Link>
           </Col>
         </React.Fragment>
       );
@@ -37,6 +40,7 @@ export default function CategoryCard(props) {
           <Col sm={8}>
             <Card.Title>{props.categoryData.name}</Card.Title>
             <Card.Text>{props.categoryData.description}</Card.Text>
+            <Link to="/products" state={{category: props.categoryData.name}}>
             <Button
               style={{
                 borderRadius: "0px",
@@ -48,6 +52,7 @@ export default function CategoryCard(props) {
               {" "}
               Explore {props.categoryData.key}
             </Button>
+            </Link>
           </Col>
           ,
           <Col sm={3}>
