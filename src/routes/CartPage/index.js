@@ -8,51 +8,33 @@ import {checkoutAction} from "../../actions/apiActions" ;
 import {NotificationManager} from 'react-notifications';
 import "./cartStyle.scss";
 import { useSelector, useDispatch } from 'react-redux';
-import { addProduct, deleteProduct,selectItems } from '../../reducer/itemReducer'
+import { emmptyCart,selectItems } from '../../reducer/itemReducer'
 
 
 function CartPage(props) {
   const [cartItems, setcartItems] = useState([]);
-  const count = useSelector(selectItems);
+  const itemList = useSelector(selectItems);
   const dispatch = useDispatch()
 
-  console.log("count",count)
 
   const checkOutOrders = ()  => {
     checkoutAction(cartItems).then(res => {      
       NotificationManager.info('Order is Placed Successfully','',2000);
       setTimeout(() => {
-        props.emptyCart([])
+        dispatch(emmptyCart())
       }, 3000);
     }).catch(err => {
       alert(err)
     })
   }
 
-  // const updateQuantity = (action,id) => {
-  //   let allItems = items
-  //   allItems.map(item => {
-  //     if(item.id === id) {
-  //        if(action === "add"){
-  //         debugger
-  //         item.qty = item.qty + 1
-  //        }
-  //        else {
-  //         item.qty = item.qty - 1
-  //       }
-  //   }})
-  //   setItems(allItems)
-  // }
-  
-
   const updateQuantity = (id,action) => {
-    console.log("cadd",id,action,props.updateQuantity)
-    props.updateQuantity(id,action)
+    dispatch(updateQty({prodId: id,action: action}))
   }
 
   const renderCart = () => {
     let productsCart = null
-    if(props.items.length === 0){
+    if(itemList.length === 0){
 
       productsCart = 
       <div className="emptyCartDiv">
@@ -73,7 +55,7 @@ function CartPage(props) {
     }
     else{
       productsCart = []
-      props.items.map(prod => productsCart.push(
+      itemList.map(prod => productsCart.push(
       <div key={prod.id} className="cartProduct">
         <Row>
           <Col sm={4}><img src={ImgSrc} height="80px" width="80px"/></Col>
@@ -82,11 +64,11 @@ function CartPage(props) {
         <Row>
           <Col sm={6}>
             &nbsp;
-            <img src={AddSrc} height="20px" width="20px" onClick={() => updateQuantity('add',prod.id)}/> 
+            <img src={AddSrc} height="20px" width="20px" onClick={() => updateQuantity(prod.id,'add')}/> 
               &nbsp;
               {prod.qty} 
               &nbsp;
-            <img src={SubtractSrc} height="20px" width="20px" onClick={() => updateQuantity('delete',prod.id)}/>
+            <img src={SubtractSrc} height="20px" width="20px" onClick={() => updateQuantity(prod.id,'delete')}/>
              <span className="mt-1">  * {prod.price} </span>
             </Col>
             <Col sm={6}>
@@ -101,9 +83,8 @@ function CartPage(props) {
 
   return (
     <div className="container">
-            items in cart 
           {renderCart()}
-          {props.items && props.items.length && props.items.length > 0 && <button
+          {itemList && itemList.length && itemList.length > 0 && <button
               variant="primary"
               type="submit"
               className="shoppingBtn"

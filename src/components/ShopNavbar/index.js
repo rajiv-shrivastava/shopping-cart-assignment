@@ -4,11 +4,17 @@ import { Link } from "react-router-dom";
 import Logo from "../../../static/images/logo.png";
 import CartImg from "../../../static/images/cart.svg";
 import "./shopNavbarstyle.scss";
-import {isLoggedIn,logout} from "../../actions/apiActions"
+import {isLoggedIn,logout} from "../../actions/apiActions";
+import { useSelector } from 'react-redux';
+import { selectItems } from '../../reducer/itemReducer'
+
 
 function ShopNavbar(props) {
   const loggedIn = isLoggedIn();
-  let {items} = props;
+  const items = useSelector(selectItems);
+
+  console.log("items",items)
+
   return (
     <div id="shoppingNavbar">
     <Navbar bg="light" expand="lg">
@@ -44,7 +50,7 @@ function ShopNavbar(props) {
             <>
             <Link to="/cart" className="navLink">
             <Col sm={12}>
-              <div><img src={CartImg} height="30px" width="30px" /> Go to Cart</div>
+              <div><img src={CartImg} height="30px" width="30px" /> {items.length}</div>
             </Col>
             </Link>
             <Col sm={12} className="mt-1">

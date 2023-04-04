@@ -24,18 +24,31 @@ export const itemReducer = createSlice({
       }
       return state
     },
-    deleteProduct: (state) => {
-      // let itemList = state.itemList
-      // itemList.filter(item => item.)
+    emmptyCart: (state,action) => {
+      state.itemList = [];
+      return state
     },
     updateQty: (state, action) => {
-      state.itemList += action.payload
+      let allItems = state.itemList
+      allItems.map(item => {
+        if(item.id === action.payload.prodId) {
+          if(action.payload.action === "add"){
+            item.qty = item.qty + 1
+          }
+          else{
+             if(item.qty > 0){
+              item.qty = item.qty - 1
+             }
+          } 
+        }})
+      state.itemList = allItems
+      return state
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addProduct, deleteProduct, updateQty } = itemReducer.actions
+export const { addProduct, deleteProduct, updateQty ,emmptyCart} = itemReducer.actions
 
 export const selectItems = (state) => state.items.itemList
 

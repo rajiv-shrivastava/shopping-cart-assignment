@@ -45,6 +45,7 @@ export default function Products(props) {
   }, []);
 
   const handleCategoryChange = (e) => {  
+    setDefaultCategory(e.target.value)
     if(e.target.value === "All Products"){
       setproductList(initalproductList)
     } 
@@ -54,7 +55,6 @@ export default function Products(props) {
       setproductList(filtedredProducts)
     } 
   }
-
 
   const renderDropdownItems = () => {
     const dropItems = [];

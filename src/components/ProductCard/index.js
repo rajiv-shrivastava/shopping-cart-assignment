@@ -10,12 +10,7 @@ import { addProduct, deleteProduct,selectItems } from '../../reducer/itemReducer
 export default function ProductCard(props) {
   const loggedIn = isLoggedIn();
   let navigate = useNavigate();
-
   const items = useSelector(selectItems);
-
-
-  console.log(items)
-
   const addToCart = (val) =>{
     dispatch(addProduct(val))
   }
