@@ -1,8 +1,14 @@
-import React from "react";
-import { Card, Row, Col, Image, Button } from "react-bootstrap";
+import React,{useContext} from "react";
+import { Card, Row, Col, Button } from "react-bootstrap";
 import ImgrSrc from "../../../static/images/category/baby.png";
-
+import { ShopContext } from "../../index";
 export default function CategoryCard(props) {
+  
+  const {items,addToCart} = useContext(ShopContext)
+  
+  const updateCartItem = (itemDesc) => {
+    addToCart(itemDesc)
+  }
   const renderCols = () => {
     let colData = (
       <>
@@ -23,6 +29,7 @@ export default function CategoryCard(props) {
                 backgroundColor: "#bb2b56",
                 border: "none",
               }}
+              onClick={() => updateCartItem(props.categoryData)}
             >
               {" "}
               Buy Now @ {props.categoryData.price}

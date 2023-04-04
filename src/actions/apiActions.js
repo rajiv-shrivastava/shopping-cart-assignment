@@ -17,7 +17,8 @@ const loginAction = (loginBody) => {
   return apiObject
     .post("login",loginBody)
     .then((res) => {
-      return res
+      window.location.href = "/";
+      return res        
     })
     .catch((err) => {
       return {
@@ -35,4 +36,9 @@ const isLoggedIn = () => {
 
 }
 
-export { fetchProductCategories ,loginAction,isLoggedIn};
+const logout = () => {
+  sessionStorage.removeItem('AUTH_TOKEN')
+  window.location.reload()
+}
+
+export { fetchProductCategories ,loginAction,isLoggedIn,logout};

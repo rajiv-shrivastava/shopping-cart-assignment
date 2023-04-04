@@ -17,9 +17,25 @@ const root = createRoot(rootElement);
 export const ShopContext = createContext()
 
 function RootComponent(){
-  const [items,setItems] = useState([{name: 'abc',qty:2}])
+  const [items,setItems] = useState([])
+  
+  const addToCart = (val) =>{
+    let allItems = items
+    let present = false
+    allItems.map(item => {
+      if(item.id === val.id) {
+        present = true
+        item.qty = item.qty + 1
+    }})
+    if(!present){
+       val.qty  = 1
+        allItems.push(val)        
+    }
+    setItems(allItems)
+  }
+
   return(
-    <ShopContext.Provider value={{items,setItems}}>
+    <ShopContext.Provider value={{items,addToCart}}>
     <ShopNavbar />
       <Routes>
         <Route path="/" element={<Home />} />
