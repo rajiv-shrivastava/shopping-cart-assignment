@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { DropdownButton,Dropdown} from "react-bootstrap";
+import { Form} from "react-bootstrap";
 import ProductCard from "../../components/ProductCard";
 import axios from "axios";
 import {fetchProductCategories} from "../../actions/apiActions"
@@ -7,7 +7,9 @@ import "./productsStyle.scss"
 
 export default function Products() {
   const [productList, setproductList] = useState([]);
+  const [initalproductList, setinitalproductList] = useState([]);
   const [categoryList, setcategoryList] = useState([]);
+  
 
   const fetchCategories = async() => {
     const response = await fetchProductCategories();
@@ -27,33 +29,49 @@ export default function Products() {
     })
       .then((res) => {
         setproductList(res.data.products);
+        setinitalproductList(res.data.products);
       })
       .catch((err) => {
         console.log("error in fetching products");
       });
   }, []);
 
+  const handleCategoryChange = (e) => {  
+    if(e.target.value === "All Products"){
+      setproductList(initalproductList)
+    } 
+    else{
+      let catId = categoryList.find(cat => cat.name === e.target.value).id
+      let filtedredProducts = initalproductList.filter(prod => prod.category === catId)
+      setproductList(filtedredProducts)
+    } 
+  }
+
 
   const renderDropdownItems = () => {
     const dropItems = [];
     let cats = categoryList;
     cats.map((item, i) => {
-      dropItems.push(
-        <Dropdown.Item href="#/action-1" key={item.id} data-title={item.id}>{item.name}</Dropdown.Item>);
+      dropItems.push(<option key={item.id} value={item.category}>{item.name} </option>);
     });
     return <>
-    <DropdownButton id="dropdown-basic-button" title={categoryList[0].name} className="text-center">
-      {dropItems}
-      </DropdownButton>
+      <Form.Select aria-label="Default select example" id="dropdown-basic-button" onChange={handleCategoryChange}>
+          <option>All Products</option>
+          {dropItems}
+        </Form.Select>
       </>
   };
 
   const renderProducts = () => {
-    let categoryCards = [];
+    let categoryCards = null;
     if (productList && productList.length) {
+      categoryCards = []
       productList.map((category, i) =>
         categoryCards.push(<ProductCard categoryData={category} index={i} key={i}/>)
       );
+    }
+    else {
+      categoryCards = <div className="noProducts"> No Products available for category</div>
     }
     return categoryCards;
   };

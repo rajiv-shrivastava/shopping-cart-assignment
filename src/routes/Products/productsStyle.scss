@@ -5,9 +5,18 @@
     border-radius: 0px;
     padding: 10px;
     font-size: 20px;
+    color: #fff;
+    text-align: center;
 }
 
 .dropdown-menu.show {
     width: 100% !important;
     text-align: center !important;
+}
+
+.noProducts{
+    text-align: center;
+    margin-top: 40px;
+    font-weight: 600;
+    color: #bb2b56
 }
