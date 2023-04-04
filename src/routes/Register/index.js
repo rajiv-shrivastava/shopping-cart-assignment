@@ -16,7 +16,6 @@ function Register() {
     };
   
     const handleChange = (e) => {
-        console.log("e",e)
       const { id, value } = e.target;
       setState((prevState) => ({
         ...prevState,
@@ -41,7 +40,7 @@ function Register() {
     };
 
   return (
-    <div className="container registerBox mt-4">
+    <div className="container registerBox mt-4 mb-4">
     <Row>
         <Col sm={{span:4,offset:2}}>
             <h1> Signup </h1>

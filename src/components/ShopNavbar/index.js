@@ -9,12 +9,6 @@ import {isLoggedIn,logout} from "../../actions/apiActions"
 function ShopNavbar(props) {
   const loggedIn = isLoggedIn();
   let {items} = props;
-
-   useEffect(() => {
-    console.log("ddass",items)
-  },[props.items])
-
-
   return (
     <div id="shoppingNavbar">
     <Navbar bg="light" expand="lg">
@@ -50,7 +44,7 @@ function ShopNavbar(props) {
             <>
             <Link to="/cart" className="navLink">
             <Col sm={12}>
-              <div><img src={CartImg} height="30px" width="30px" /> {items.length} Items</div>
+              <div><img src={CartImg} height="30px" width="30px" /> Go to Cart</div>
             </Col>
             </Link>
             <Col sm={12} className="mt-1">

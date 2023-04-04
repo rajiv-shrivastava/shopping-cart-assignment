@@ -34,16 +34,14 @@ function Login() {
     checkPassword
       ? setPasswordError("Password must be 8 characters long")
       : setPasswordError("");
-    console.log("checkPassword", state.password.length, passwordError);
     if (checkEmail && !checkPassword) {
       // No errors.
       loginAction(state).then(res => 
         {
-          console.log("logged in",res)
           sessionStorage.setItem('USERNAME',res.data.user)
           sessionStorage.setItem('AUTH_TOKEN',res.data.token)        
        }).catch(err =>{
-        console.log(`Unable to login ${err}`)
+        alert(`Unable to login ${err}`)
        })
     }
   };
@@ -57,7 +55,7 @@ function Login() {
   };
 
   return (
-    <div className="container loginBox mt-4">
+    <div className="container loginBox mt-4 mb-4">
       <Row>
         <Col sm={{ span: 4, offset: 2 }}>
           <h1> Sign In </h1>

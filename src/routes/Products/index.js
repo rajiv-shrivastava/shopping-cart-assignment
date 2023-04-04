@@ -40,7 +40,7 @@ export default function Products(props) {
         setinitalproductList(res.data.products);
       })
       .catch((err) => {
-        console.log("error in fetching products");
+        alert("error in fetching products");
       });
   }, []);
 

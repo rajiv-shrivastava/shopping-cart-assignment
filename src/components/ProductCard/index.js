@@ -4,22 +4,38 @@ import ImgSrc from "../../../static/images/cart.svg"
 import { useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../actions/apiActions";
 import { NotificationManager } from "react-notifications";
+import { useSelector, useDispatch } from 'react-redux';
+import { addProduct, deleteProduct,selectItems } from '../../reducer/itemReducer'
 
 export default function ProductCard(props) {
   const loggedIn = isLoggedIn();
   let navigate = useNavigate();
 
-  console.log("sdsaasd",props)
+  const items = useSelector(selectItems);
+
+
+  console.log(items)
+
+  const addToCart = (val) =>{
+    dispatch(addProduct(val))
+  }
+
+  const emptyCart = () => {
+    setItems([])
+  }
 
   const updateCartItem = (itemDesc) => {
     if(loggedIn){
-      props.addToCart(itemDesc)
+      addToCart(itemDesc)
     }
     else{
       NotificationManager.warning('Please log in first to order');
       return navigate("/login");
     }    
   }
+
+
+  const dispatch = useDispatch()
 
   const renderCols = () => {    
     let colData = (
