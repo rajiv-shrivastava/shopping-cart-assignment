@@ -1,4 +1,4 @@
-import React, { useState,createContext } from "react";
+import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import ShopNavbar from "./components/ShopNavbar/";
 import "./style.scss";
@@ -10,11 +10,12 @@ import Login from "./routes/Login";
 import Register from "./routes/Register";
 import Products from "./routes/Products/";
 import CartPage from "./routes/CartPage";
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer} from 'react-notifications';
+
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
-
-export const ShopContext = createContext()
 
 function RootComponent(){
   const [items,setItems] = useState([])
@@ -31,22 +32,28 @@ function RootComponent(){
        val.qty  = 1
         allItems.push(val)        
     }
+    console.log(items)
     setItems(allItems)
   }
 
+  const emptyCart = () => {
+    setItems([])
+  }
+
   return(
-    <ShopContext.Provider value={{items,addToCart}}>
-    <ShopNavbar />
+    <>
+    <NotificationContainer/>
+    <ShopNavbar items={items}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/404" element={<ErrorPage />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route path="/products" element={<Products addToCart={addToCart}/>} />
+        <Route path="/cart" element={<CartPage items={items} emptyCart={emptyCart}/>} />
         <Route path="*" element={<ErrorPage />} />        
       </Routes>
-      </ShopContext.Provider>
+      </>
   )
 }
 

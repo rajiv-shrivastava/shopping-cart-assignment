@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const AUTH_TOKEN = "demo";
+const AUTH_TOKEN = sessionStorage.getItem("AUTH_TOKEN");
 
 const makeHeaders = () => {
   if (
@@ -9,7 +9,7 @@ const makeHeaders = () => {
     AUTH_TOKEN.length > 0
   ) {
     return {
-      Authorization: "bearer " + AUTH_TOKEN,
+      Authorization: `Bearer ${AUTH_TOKEN}`,
     };
   } else {
     return {};

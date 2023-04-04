@@ -30,23 +30,24 @@ app.post("/login", (req, res) => {
   }
 });
 
-// app.get("/products", (req, res) => {
-    // if (!req.headers.authorization) {
-    //   return res.status(401).json({ error: "Not Authorized" });
-    // }
-    // // Bearer <token>>
-    // const authHeader = req.headers.authorization;
-    // const token = authHeader.split(" ")[1];
-    // try {
-      // // Verify the token is valid
-//       const { user } = jwt.verify(token, process.env.JWT_SECRET);
-//       return res.status(200).json({
-//         products: products,
-//       });
-//     } catch (error) {
-//       return res.status(401).json({ error: "Not Authorized" });
-//     }
-//   });
+app.post("/checkout", (req, res) => {
+    const order = req.body
+    if (!req.headers.authorization) {
+      return res.status(401).json({ error: "Not Authorized" });
+    }
+    // Bearer <token>>
+    const authHeader = req.headers.authorization;
+    const token = authHeader.split(" ")[1];
+    try {
+      // Verify the token is valid
+      const { user } = jwt.verify(token, JWT_SECRET);
+      return res.status(200).json({
+        data: "Order is placed successfully"
+      });
+    } catch (error) {
+      return res.status(401).json({ error: "Not Authorized" });
+    }
+  });
 
 app.get("/products", (req, res) => {
     return res.status(200).json({products: products});

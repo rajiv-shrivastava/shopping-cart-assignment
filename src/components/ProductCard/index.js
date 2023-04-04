@@ -1,17 +1,27 @@
-import React,{useContext} from "react";
+import React from "react";
 import { Card, Row, Col, Button } from "react-bootstrap";
 import ImgSrc from "../../../static/images/cart.svg"
+import { useNavigate } from "react-router-dom";
+import { isLoggedIn } from "../../actions/apiActions";
+import { NotificationManager } from "react-notifications";
 
-import { ShopContext } from "../../index";
-export default function CategoryCard(props) {
-  
-  const {items,addToCart} = useContext(ShopContext)
+export default function ProductCard(props) {
+  const loggedIn = isLoggedIn();
+  let navigate = useNavigate();
+
+  console.log("sdsaasd",props)
+
   const updateCartItem = (itemDesc) => {
-    addToCart(itemDesc)
+    if(loggedIn){
+      props.addToCart(itemDesc)
+    }
+    else{
+      NotificationManager.warning('Please log in first to order');
+      return navigate("/login");
+    }    
   }
 
   const renderCols = () => {    
-    console.log(props)
     let colData = (
       <>
         <Col sm={4}>

@@ -27,6 +27,21 @@ const loginAction = (loginBody) => {
     });
 };
 
+const checkoutAction = (ordersBody) => {
+  return apiObject
+    .post("checkout",ordersBody)
+    .then((res) => {
+      return res        
+    })
+    .catch((err) => {
+      return {
+        error: `Error ${err}`,
+      };
+    });
+};
+
+
+
 const isLoggedIn = () => {
   let logInStatus = false;
   if(sessionStorage.getItem('AUTH_TOKEN')){
@@ -38,7 +53,7 @@ const isLoggedIn = () => {
 
 const logout = () => {
   sessionStorage.removeItem('AUTH_TOKEN')
-  window.location.reload()
+  window.location.href = "/"
 }
 
-export { fetchProductCategories ,loginAction,isLoggedIn,logout};
+export { fetchProductCategories ,loginAction,isLoggedIn,logout,checkoutAction};

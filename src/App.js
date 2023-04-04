@@ -1,5 +1,4 @@
-import React,{createContext, useState} from "react";
-import ShopNavbar from "./components/ShopNavbar";
+import React from "react";
 
 function App() {
  

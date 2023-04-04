@@ -1,15 +1,18 @@
-import React,{useContext,useState,useCallback} from "react";
+import React,{useEffect, useState} from "react";
 import { Container, Nav, Navbar, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Logo from "../../../static/images/logo.png";
 import CartImg from "../../../static/images/cart.svg";
 import "./shopNavbarstyle.scss";
 import {isLoggedIn,logout} from "../../actions/apiActions"
-import { ShopContext } from "../../index";
 
-function ShopNavbar() {
+function ShopNavbar(props) {
   const loggedIn = isLoggedIn();
-  const {items,addToCart} = useContext(ShopContext)
+  let {items} = props;
+
+   useEffect(() => {
+    console.log("ddass",items)
+  },[props.items])
 
 
   return (

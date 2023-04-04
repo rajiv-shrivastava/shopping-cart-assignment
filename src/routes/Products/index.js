@@ -7,7 +7,7 @@ import "./productsStyle.scss"
 import { useLocation } from "react-router-dom";
 
 
-export default function Products() {
+export default function Products(props) {
   const [productList, setproductList] = useState([]);
   const [initalproductList, setinitalproductList] = useState([]);
   const [categoryList, setcategoryList] = useState([]);
@@ -75,7 +75,7 @@ export default function Products() {
     if (productList && productList.length) {
       productCards = []
       productList.map((category, i) =>
-        productCards.push(<ProductCard categoryData={category} index={i} key={i}/>)
+        productCards.push(<ProductCard categoryData={category} addToCart={props.addToCart} index={i} key={i}/>)
       );
     }
     else {
