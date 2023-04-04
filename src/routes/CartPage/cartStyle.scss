@@ -1,0 +1,40 @@
+
+.emptyCartDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 40px;
+    border: 1px solid grey;
+    .text1{
+      width: 100%;
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 20px;
+  }
+  .shoppingBtn{
+        background-color: rgb(187, 43, 86);
+        padding: 10px;
+        border-radius: 0px;
+        color: #fff;
+        border: none;
+  }
+
+  @media only screen and (min-width: 300px) and (max-width: 768px){
+    .text1{
+        font-size: 14px;
+    }
+    .shoppingBtn{
+        width: 250px;
+  }
+  
+  }
+
+
+}
+
+

@@ -9,6 +9,7 @@ import {isLoggedIn} from "../../actions/apiActions"
 function ShopNavbar() {
   const loggedIn = isLoggedIn();
   return (
+    <div id="shoppingNavbar">
     <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand href="#">
@@ -40,11 +41,8 @@ function ShopNavbar() {
             </Col>
             </>:
             <Link to="/cart" className="navLink">
-            <Col
-              sm={12}
-              style={{ background: "#E8E8E8", padding: "10px", width: "50%" }}
-            >
-              <img src={CartImg} height="30px" width="30px" /> {0} Items
+            <Col sm={12}>
+              <div><img src={CartImg} height="30px" width="30px" /> {0} Items</div>
             </Col>
             </Link>
             }
@@ -52,6 +50,7 @@ function ShopNavbar() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    </div>
   );
 }
 
