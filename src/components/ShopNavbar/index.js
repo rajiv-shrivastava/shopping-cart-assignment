@@ -12,9 +12,6 @@ import { selectItems } from '../../reducer/itemReducer'
 function ShopNavbar(props) {
   const loggedIn = isLoggedIn();
   const items = useSelector(selectItems);
-
-  console.log("items",items)
-
   return (
     <div id="shoppingNavbar">
     <Navbar bg="light" expand="lg">

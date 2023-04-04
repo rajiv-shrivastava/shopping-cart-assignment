@@ -6,7 +6,7 @@ const port = process.env.PORT || 5000;
 const products = require("./server/products/index.get.json");
 const banners = require("./server/banners/index.get.json");
 const categories = require("./server/categories/index.get.json");
-const users = require("./server/users/users.json");
+let users = require("./server/users/users.json");
 const JWT_SECRET =
   "goK!pusp6ThEdURUtRenOwUhAsWUCLheBazl!uJLPlS8EbreWLdrupIwabRAsiBu";
 
@@ -30,6 +30,19 @@ app.post("/login", (req, res) => {
   }
 });
 
+app.post("/register", (req, res) => {
+  const { email, password } = req.body;
+  let isValid = false
+  isValid = users.map(usr => (usr.email === email) ? false : true)
+  if(isValid){
+     users.push(req.body)
+    return res.status(200).json({data: "User is Registered"}) 
+  }
+  else{
+    return res.status(401).json({ message: "Error in register" });
+  }
+});
+
 app.post("/checkout", (req, res) => {
     const order = req.body
     if (!req.headers.authorization) {
@@ -47,7 +60,9 @@ app.post("/checkout", (req, res) => {
     } catch (error) {
       return res.status(401).json({ error: "Not Authorized" });
     }
-  });
+});
+
+
 
 app.get("/products", (req, res) => {
     return res.status(200).json({products: products});

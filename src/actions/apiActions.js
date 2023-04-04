@@ -27,6 +27,22 @@ const loginAction = (loginBody) => {
     });
 };
 
+const registerAction = (loginBody) => {
+  return apiObject
+    .post("register",loginBody)
+    .then((res) => {
+      setTimeout(() => {
+        window.location.href = '/'
+      }, 2000);
+      
+    })
+    .catch((err) => {
+      return {
+        error: `Error ${err}`,
+      };
+    });
+};
+
 const checkoutAction = (ordersBody) => {
   return apiObject
     .post("checkout",ordersBody)
@@ -56,4 +72,4 @@ const logout = () => {
   window.location.href = "/"
 }
 
-export { fetchProductCategories ,loginAction,isLoggedIn,logout,checkoutAction};
+export { fetchProductCategories ,loginAction,isLoggedIn,logout,checkoutAction,registerAction};

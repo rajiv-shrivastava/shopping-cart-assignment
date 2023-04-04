@@ -13,6 +13,16 @@ npm run start
 yarn install
 yarn start
 ```
+This will start the project ui on http://localhost:8080/
+
+After that open a new terminal and then start the backend server
+
+cd PATH_TO_PROJECT_FOLDER
+node server
+
+This will start backend node server on http://localhost:5000/
+
+You can use below demo credentials to login
 
 For Sign in do use below demo credentials (for demo i have saved the below creds)
 

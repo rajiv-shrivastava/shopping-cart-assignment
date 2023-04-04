@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 import "./loginStyle.scss";
-import {loginAction} from "../../actions/apiActions"
-
+import { loginAction } from "../../actions/apiActions";
 
 function Login() {
   const [emailError, setEmailError] = useState([]);
@@ -36,13 +35,14 @@ function Login() {
       : setPasswordError("");
     if (checkEmail && !checkPassword) {
       // No errors.
-      loginAction(state).then(res => 
-        {
-          sessionStorage.setItem('USERNAME',res.data.user)
-          sessionStorage.setItem('AUTH_TOKEN',res.data.token)        
-       }).catch(err =>{
-        alert(`Unable to login ${err}`)
-       })
+      loginAction(state)
+        .then((res) => {
+          sessionStorage.setItem("USERNAME", res.data.user);
+          sessionStorage.setItem("AUTH_TOKEN", res.data.token);
+        })
+        .catch((err) => {
+          alert(`Unable to login ${err}`);
+        });
     }
   };
 
