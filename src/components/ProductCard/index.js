@@ -1,20 +1,22 @@
 import React,{useContext} from "react";
 import { Card, Row, Col, Button } from "react-bootstrap";
-import ImgrSrc from "../../../static/images/category/baby.png";
+import ImgSrc from "../../../static/images/cart.svg"
+
 import { ShopContext } from "../../index";
 export default function CategoryCard(props) {
   
   const {items,addToCart} = useContext(ShopContext)
-  
   const updateCartItem = (itemDesc) => {
     addToCart(itemDesc)
   }
-  const renderCols = () => {
+
+  const renderCols = () => {    
+    console.log(props)
     let colData = (
       <>
         <Col sm={4}>
           {" "}
-          <img src={ImgrSrc} height="150px" width="150px" />
+          <img src={ImgSrc}  height="150px" width="150px" />
         </Col>
         <Col sm={8}>
           <Card.Title>{props.categoryData.name}</Card.Title>
